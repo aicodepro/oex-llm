@@ -1,43 +1,31 @@
-name: Docker Image CI
+name: Build and Deploy Docker Image on Digital Ocean
 
 on:
-    workflow_dispatch:
-        inputs:
-            node_version:
-                description: 'Node.js version to build this image with.'
-                type: choice
-                required: true
-                default: '20'
-                options:
-                    - '20'
-            tag_version:
-                description: 'Tag version of the image to be pushed.'
-                type: string
-                required: true
-                default: 'latest'
+    push:
+        branches:
+            - main
 
 jobs:
-    docker:
+    build-and-deploy:
         runs-on: ubuntu-latest
+        if: github.event_name == 'push' && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/pool-1' || github.ref == 'refs/heads/crunchyfashion' || github.ref == 'refs/heads/production-oex')
+        env:
+            CONTAINER_REGISTRY: ${{ github.ref == 'refs/heads/crunchyfashion' && 'cfc-container-registry' || github.ref == 'refs/heads/production-oex' && 'prod-oexcontainer-registry'||  'aicodepro-container'}}
+            APP_NAME: ${{ github.ref == 'refs/heads/main' && 'ms-aicodepro-llm' }}
+            IMAGE_NAME: registry.digitalocean.com/${{ github.ref == 'refs/heads/crunchyfashion' && 'cfc-container-registry' ||  'aicodepro-container'}}/${{ github.ref == 'refs/heads/main' && 'ms-aicodepro-llm'}}
+            DIGITALOCEAN_REGISTRY_TOKEN: ${{ github.ref == 'refs/heads/crunchyfashion' && secrets.CRUNCHYFASHION_DIGITALOCEAN_REGISTRY_TOKEN || secrets.DIGITALOCEAN_REGISTRY_TOKEN }}
+            NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+            NODE_ENV: production
         steps:
-            - name: Checkout
-              uses: actions/checkout@v4.1.1
-            - name: Set up QEMU
-              uses: docker/setup-qemu-action@v3.0.0
-            - name: Set up Docker Buildx
-              uses: docker/setup-buildx-action@v3.0.0
-            - name: Login to Docker Hub
-              uses: docker/login-action@v3
-              with:
-                  username: ${{ secrets.DOCKERHUB_USERNAME }}
-                  password: ${{ secrets.DOCKERHUB_TOKEN }}
-            - name: Build and push
-              uses: docker/build-push-action@v5.3.0
-              with:
-                  context: .
-                  file: ./docker/Dockerfile
-                  build-args: |
-                      NODE_VERSION=${{github.event.inputs.node_version}}
-                  platforms: linux/amd64,linux/arm64
-                  push: true
-                  tags: flowiseai/flowise:${{github.event.inputs.tag_version}}
+            - name: Checkout code
+              uses: actions/checkout@v3
+
+            - name: Login to Docker registry
+              run: docker login -u $DIGITALOCEAN_REGISTRY_TOKEN -p $DIGITALOCEAN_REGISTRY_TOKEN  registry.digitalocean.com
+
+            - name: Build Docker image
+              run: docker build  --build-arg NPM_TOKEN=$NPM_TOKEN . -t $IMAGE_NAME -f deploy/Dockerfile --build-arg NODE_ENV=$NODE_ENV
+
+            - name: Push Docker image to registry
+              run: docker push $IMAGE_NAME
+              timeout-minutes: 25
