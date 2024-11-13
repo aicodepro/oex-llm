@@ -33,7 +33,11 @@ export default defineConfig(async ({ mode }) => {
         },
         root: resolve(__dirname),
         build: {
-            outDir: './build'
+            outDir: './build',
+            rollupOptions: {
+                // Add `@mui/system` to externalize it in the build
+                external: ['@mui/system']
+            }
         },
         server: {
             open: true,

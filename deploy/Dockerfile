@@ -1,36 +1,34 @@
-# Stage 1 - Build
-FROM node:20-alpine AS build
+# Build local monorepo image
+# docker build --no-cache -t  flowise .
 
-ENV SKIP_PREFLIGHT_CHECK=true
-ENV DISABLE_ESLINT_PLUGIN=true
-ENV REACT_APP_MAP_ID=AIzaSyAGrOQEuSTyoNP1K7VcKSvejMz9c8W0A2A
+# Run image
+# docker run -d -p 3000:3000 flowise
+
+FROM node:20.18-alpine
+RUN apk add --update libc6-compat python3 make g++
+# needed for pdfjs-dist
+RUN apk add --no-cache build-base cairo-dev pango-dev
+
+# Install Chromium
+RUN apk add --no-cache chromium
+
+#install PNPM globaly
+RUN npm install -g pnpm
+
 ENV PUPPETEER_SKIP_DOWNLOAD=true
 ENV PUPPETEER_EXECUTABLE_PATH=/usr/bin/chromium-browser
 
 ENV NODE_OPTIONS=--max-old-space-size=8192
 
-WORKDIR /app
-COPY i18n /app/i18n/
-COPY images /app/images/
-COPY metrics /app/metrics/
-COPY assets /app/assets/
-COPY packages /app/packages/
-COPY public /app/public/
+WORKDIR /usr/src
 
-COPY package.json pnpm-lock.yaml pnpm-workspace.yaml /app/
+# Copy app source
+COPY . .
 
-RUN npm install -g pnpm
 RUN pnpm install
+
 RUN pnpm build
 
-# Stage 2 - Run
-FROM node:20-alpine AS run
+EXPOSE 3000
 
-WORKDIR /app
-
-#COPY --from=build /app .
-
-EXPOSE 8080
-
-# Start your application
-CMD ["pnpm", "start"]
+CMD [ "pnpm", "start" ]
