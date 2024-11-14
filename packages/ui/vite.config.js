@@ -8,8 +8,7 @@ export default defineConfig(async ({ mode }) => {
     if (mode === 'development') {
         const serverEnv = dotenv.config({ processEnv: {}, path: '../server/.env' }).parsed
         const serverHost = serverEnv?.['HOST'] ?? 'localhost'
-        console.log(serverHost)
-        const serverPort = parseInt(serverEnv?.['PORT'] ?? 8080)
+        const serverPort = parseInt(serverEnv?.['PORT'] ?? 3000)
         if (!Number.isNaN(serverPort) && serverPort > 0 && serverPort < 65535) {
             proxy = {
                 '^/api(/|$).*': {
@@ -33,11 +32,7 @@ export default defineConfig(async ({ mode }) => {
         },
         root: resolve(__dirname),
         build: {
-            outDir: './build',
-            rollupOptions: {
-                // Add `@mui/system` to externalize it in the build
-                external: ['@mui/system']
-            }
+            outDir: './build'
         },
         server: {
             open: true,
