@@ -1,6 +1,8 @@
 import { BaseLanguageModel } from '@langchain/core/language_models/base'
 import { Embeddings } from '@langchain/core/embeddings'
-import { WebBrowser } from 'langchain/tools/webbrowser'
+//import { WebBrowser } from 'langchain/tools/webbrowser'
+import { WebBrowser } from './newWebBrowser'
+
 import { INode, INodeData, INodeParams } from '../../../src/Interface'
 import { getBaseClasses } from '../../../src/utils'
 
@@ -16,11 +18,11 @@ class WebBrowser_Tools implements INode {
     inputs: INodeParams[]
 
     constructor() {
-        this.label = 'Web Browser'
+        this.label = 'Aicodepro Web Browser'
         this.name = 'webBrowser'
         this.version = 1.0
         this.type = 'WebBrowser'
-        this.icon = 'webBrowser.svg'
+        this.icon = 'aicodepro.svg'
         this.category = 'Tools'
         this.description = 'Gives agent the ability to visit a website and extract information'
         this.inputs = [

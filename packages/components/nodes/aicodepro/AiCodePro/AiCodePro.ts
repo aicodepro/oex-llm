@@ -1,6 +1,8 @@
-import { INode } from '../../../src/Interface'
+import { INode, INodeData, INodeParams } from '../../../src/Interface'
 import { getBaseClasses } from '../../../src/utils'
-import { AiCodePro } from './core'
+import { AicodeproWebBrowser } from './aicodeWebBrowser'
+import { BaseLanguageModel } from '@langchain/core/language_models/base'
+import { Embeddings } from '@langchain/core/embeddings'
 
 class AiCodePro_Aicodepro implements INode {
     label: string
@@ -11,20 +13,36 @@ class AiCodePro_Aicodepro implements INode {
     icon: string
     category: string
     baseClasses: string[]
+    inputs: INodeParams[]
+    author: string
 
     constructor() {
-        this.label = 'AiCodePro'
+        this.label = 'AiCodePro Browser'
         this.name = 'aicodepro'
         this.version = 1.0
-        this.type = 'AiCodePro'
+        this.type = 'WebBrowser'
         this.icon = 'aicodepro.svg'
         this.category = 'Aicodepro'
-        this.description = 'Perform calculations on response'
-        this.baseClasses = [this.type, ...getBaseClasses(AiCodePro)]
+        this.author = 'Devendra Yadav'
+        this.description = 'Gives agent the ability to visit a website and extract information'
+        this.inputs = [
+            {
+                label: 'Language Model',
+                name: 'model',
+                type: 'BaseLanguageModel'
+            },
+            {
+                label: 'Embeddings',
+                name: 'embeddings',
+                type: 'Embeddings'
+            }
+        ]
+        this.baseClasses = [this.type, ...getBaseClasses(AicodeproWebBrowser)]
     }
-
-    async init() {
-        return new AiCodePro()
+    async init(nodeData: INodeData): Promise<any> {
+        const model = nodeData.inputs?.model as BaseLanguageModel
+        const embeddings = nodeData.inputs?.embeddings as Embeddings
+        return new AicodeproWebBrowser({ model, embeddings })
     }
 }
 

@@ -14,8 +14,10 @@
         "strictPropertyInitialization": false,
         "useUnknownInCatchVariables": false,
         "declaration": true,
+        "allowJs": true,
+        "checkJs": true,
         "module": "commonjs"
     },
-    "include": ["src", "nodes", "credentials"],
+    "include": ["src", "nodes", "credentials", "src/nodes/**/*.d.ts"],
     "exclude": ["gulpfile.ts", "node_modules", "dist"]
 }
