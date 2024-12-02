@@ -366,7 +366,7 @@ const ProfileSection = ({ username, handleLogout }) => {
                                         </Box>
                                     )}
                                     <PerfectScrollbar style={{ height: '100%', maxHeight: 'calc(100vh - 250px)', overflowX: 'hidden' }}>
-                                        <Box sx={{ p: 2 }}>
+                                        <Box sx={{ p: 2, backgroundColor: '#4a3889' }}>
                                             <Divider />
                                             <List
                                                 component='nav'
@@ -374,7 +374,7 @@ const ProfileSection = ({ username, handleLogout }) => {
                                                     width: '100%',
                                                     maxWidth: 250,
                                                     minWidth: 200,
-                                                    backgroundColor: theme.palette.background.paper,
+                                                    backgroundColor: '#4a3889',
                                                     borderRadius: '10px',
                                                     [theme.breakpoints.down('md')]: {
                                                         minWidth: '100%'
@@ -393,7 +393,8 @@ const ProfileSection = ({ username, handleLogout }) => {
                                                     <ListItemIcon>
                                                         <IconFileExport stroke={1.5} size='1.3rem' />
                                                     </ListItemIcon>
-                                                    <ListItemText primary={<Typography variant='body2'>Export</Typography>} />
+                                                    {/* prettier-ignore */}
+                                                    <ListItemText primary={<Typography variant='body2' color='inherit'>Export</Typography>} />
                                                 </ListItemButton>
                                                 <ListItemButton
                                                     sx={{ borderRadius: `${customization.borderRadius}px` }}
@@ -404,20 +405,23 @@ const ProfileSection = ({ username, handleLogout }) => {
                                                     <ListItemIcon>
                                                         <IconFileUpload stroke={1.5} size='1.3rem' />
                                                     </ListItemIcon>
-                                                    <ListItemText primary={<Typography variant='body2'>Import</Typography>} />
+                                                    {/* prettier-ignore */}
+                                                    <ListItemText primary={<Typography variant='body2' color='inherit'>Import</Typography>} />
                                                 </ListItemButton>
                                                 <input ref={inputRef} type='file' hidden onChange={fileChange} accept='.json' />
+                                                {/* prettier-ignore */}
                                                 <ListItemButton
+                                                    component="a"
+                                                    href="https://app.aicodepro.com"
+                                                    target="_blank"
+                                                    rel="noopener noreferrer"
                                                     sx={{ borderRadius: `${customization.borderRadius}px` }}
-                                                    onClick={() => {
-                                                        setOpen(false)
-                                                        setAboutDialogOpen(true)
-                                                    }}
                                                 >
                                                     <ListItemIcon>
                                                         <IconInfoCircle stroke={1.5} size='1.3rem' />
                                                     </ListItemIcon>
-                                                    <ListItemText primary={<Typography variant='body2'>About Flowise</Typography>} />
+                                                    {/* prettier-ignore */}
+                                                    <ListItemText primary={<Typography variant='body2' color='inherit'>About Aicodepro</Typography>} />
                                                 </ListItemButton>
                                                 {localStorage.getItem('username') && localStorage.getItem('password') && (
                                                     <ListItemButton
