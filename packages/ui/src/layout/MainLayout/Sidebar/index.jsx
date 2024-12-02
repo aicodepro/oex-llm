@@ -37,7 +37,8 @@ const Sidebar = ({ drawerOpen, drawerToggle, window }) => {
                     style={{
                         height: !matchUpMd ? 'calc(100vh - 56px)' : `calc(100vh - ${headerHeight}px)`,
                         paddingLeft: '16px',
-                        paddingRight: '16px'
+                        paddingRight: '16px',
+                        backgroundColor: '#4a3889'
                     }}
                 >
                     <MenuList />
