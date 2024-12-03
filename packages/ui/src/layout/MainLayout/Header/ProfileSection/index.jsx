@@ -385,53 +385,126 @@ const ProfileSection = ({ username, handleLogout }) => {
                                                 }}
                                             >
                                                 <ListItemButton
-                                                    sx={{ borderRadius: `${customization.borderRadius}px` }}
+                                                    sx={{
+                                                        borderRadius: `${customization.borderRadius}px`,
+                                                        color: 'white',
+                                                        '&:hover': {
+                                                            backgroundColor: 'white',
+                                                            color: '#4a3889'
+                                                        },
+                                                        '&.Mui-selected': {
+                                                            backgroundColor: 'white',
+                                                            color: '#4a3889'
+                                                        }
+                                                    }}
                                                     onClick={() => {
                                                         setExportDialogOpen(true)
                                                     }}
                                                 >
-                                                    <ListItemIcon>
+                                                    <ListItemIcon
+                                                        sx={{
+                                                            color: 'inherit'
+                                                        }}
+                                                    >
                                                         <IconFileExport stroke={1.5} size='1.3rem' />
                                                     </ListItemIcon>
-                                                    {/* prettier-ignore */}
-                                                    <ListItemText primary={<Typography variant='body2' color='inherit'>Export</Typography>} />
+                                                    <ListItemText
+                                                        primary={
+                                                            <Typography
+                                                                variant='body2'
+                                                                sx={{
+                                                                    color: 'inherit'
+                                                                }}
+                                                            >
+                                                                Export
+                                                            </Typography>
+                                                        }
+                                                    />
                                                 </ListItemButton>
                                                 <ListItemButton
-                                                    sx={{ borderRadius: `${customization.borderRadius}px` }}
+                                                    sx={{
+                                                        borderRadius: `${customization.borderRadius}px`,
+                                                        color: 'white',
+                                                        '&:hover': {
+                                                            backgroundColor: 'white',
+                                                            color: '#4a3889'
+                                                        },
+                                                        '&.Mui-selected': {
+                                                            backgroundColor: 'white',
+                                                            color: '#4a3889'
+                                                        }
+                                                    }}
                                                     onClick={() => {
                                                         importAll()
                                                     }}
                                                 >
-                                                    <ListItemIcon>
+                                                    <ListItemIcon sx={{ color: 'inherit' }}>
                                                         <IconFileUpload stroke={1.5} size='1.3rem' />
                                                     </ListItemIcon>
-                                                    {/* prettier-ignore */}
-                                                    <ListItemText primary={<Typography variant='body2' color='inherit'>Import</Typography>} />
+                                                    <ListItemText
+                                                        primary={
+                                                            <Typography variant='body2' color='inherit'>
+                                                                Import
+                                                            </Typography>
+                                                        }
+                                                    />
                                                 </ListItemButton>
                                                 <input ref={inputRef} type='file' hidden onChange={fileChange} accept='.json' />
-                                                {/* prettier-ignore */}
                                                 <ListItemButton
-                                                    component="a"
-                                                    href="https://app.aicodepro.com"
-                                                    target="_blank"
-                                                    rel="noopener noreferrer"
-                                                    sx={{ borderRadius: `${customization.borderRadius}px` }}
+                                                    component='a'
+                                                    href='https://app.aicodepro.com'
+                                                    target='_blank'
+                                                    rel='noopener noreferrer'
+                                                    sx={{
+                                                        borderRadius: `${customization.borderRadius}px`,
+                                                        color: 'white',
+                                                        '&:hover': {
+                                                            backgroundColor: 'white',
+                                                            color: '#4a3889'
+                                                        },
+                                                        '&.Mui-selected': {
+                                                            backgroundColor: 'white',
+                                                            color: '#4a3889'
+                                                        }
+                                                    }}
                                                 >
-                                                    <ListItemIcon>
+                                                    <ListItemIcon sx={{ color: 'inherit' }}>
                                                         <IconInfoCircle stroke={1.5} size='1.3rem' />
                                                     </ListItemIcon>
-                                                    {/* prettier-ignore */}
-                                                    <ListItemText primary={<Typography variant='body2' color='inherit'>About Aicodepro</Typography>} />
+                                                    <ListItemText
+                                                        primary={
+                                                            <Typography variant='body2' color='inherit'>
+                                                                About Aicodepro
+                                                            </Typography>
+                                                        }
+                                                    />
                                                 </ListItemButton>
                                                 {localStorage.getItem('username') && localStorage.getItem('password') && (
                                                     <ListItemButton
-                                                        sx={{ borderRadius: `${customization.borderRadius}px` }}
+                                                        sx={{
+                                                            borderRadius: `${customization.borderRadius}px`,
+                                                            color: 'white',
+                                                            '&:hover': {
+                                                                backgroundColor: 'white',
+                                                                color: '#4a3889'
+                                                            },
+                                                            '&.Mui-selected': {
+                                                                backgroundColor: 'white',
+                                                                color: '#4a3889'
+                                                            }
+                                                        }}
                                                         onClick={handleLogout}
                                                     >
-                                                        <ListItemIcon>
+                                                        <ListItemIcon sx={{ color: 'inherit' }}>
                                                             <IconLogout stroke={1.5} size='1.3rem' />
                                                         </ListItemIcon>
-                                                        <ListItemText primary={<Typography variant='body2'>Logout</Typography>} />
+                                                        <ListItemText
+                                                            primary={
+                                                                <Typography variant='body2' color='inherit'>
+                                                                    Logout
+                                                                </Typography>
+                                                            }
+                                                        />
                                                     </ListItemButton>
                                                 )}
                                             </List>

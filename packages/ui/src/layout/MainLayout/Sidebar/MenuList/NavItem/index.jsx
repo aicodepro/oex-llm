@@ -105,19 +105,27 @@ const NavItem = ({ item, level, navType, onClick, onUploadFile }) => {
                 alignItems: 'flex-start',
                 backgroundColor: level > 1 ? 'transparent !important' : 'inherit',
                 py: level > 1 ? 1 : 1.25,
-                pl: `${level * 24}px`
+                pl: `${level * 24}px`,
+                color: 'white',
+                '&:hover': {
+                    backgroundColor: 'white',
+                    color: '#4a3889'
+                },
+                '&.Mui-selected': {
+                    backgroundColor: 'white',
+                    color: '#4a3889'
+                }
             }}
             selected={customization.isOpen.findIndex((id) => id === item.id) > -1}
             onClick={() => itemHandler(item.id)}
         >
             {item.id === 'loadChatflow' && <input type='file' hidden accept='.json' onChange={(e) => handleFileUpload(e)} />}
-            <ListItemIcon sx={{ my: 'auto', minWidth: !item?.icon ? 18 : 36, color: 'white' }}>{itemIcon}</ListItemIcon>
+            <ListItemIcon sx={{ my: 'auto', minWidth: !item?.icon ? 18 : 36, color: 'inherit' }}>{itemIcon}</ListItemIcon>
             <ListItemText
                 primary={
                     <Typography
                         variant={customization.isOpen.findIndex((id) => id === item.id) > -1 ? 'h5' : 'body1'}
-                        color='inherit'
-                        sx={{ my: 0.5 }}
+                        sx={{ my: 0.5, color: 'inherit' }}
                     >
                         {item.title}
                     </Typography>

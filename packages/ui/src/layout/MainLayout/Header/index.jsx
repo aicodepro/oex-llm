@@ -126,7 +126,7 @@ const Header = ({ handleLeftDrawerToggle }) => {
                 </ButtonBase>
             </Box>
             <Box sx={{ flexGrow: 1 }} />
-            {/* <MaterialUISwitch checked={isDark} onChange={changeDarkMode} /> */}
+            {false && <MaterialUISwitch checked={isDark} onChange={changeDarkMode} />}
             <Box sx={{ ml: 2 }}></Box>
             <ProfileSection handleLogout={signOutClicked} username={localStorage.getItem('username') ?? ''} />
         </>
