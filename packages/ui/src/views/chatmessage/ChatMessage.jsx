@@ -42,7 +42,7 @@ import {
     IconSparkles
 } from '@tabler/icons-react'
 // import robotPNG from '@/assets/images/robot.png'
-import userPNG from '@/assets/images/account.png'
+// import userPNG from '@/assets/images/account.png'
 import multiagent_supervisorPNG from '@/assets/images/multiagent_supervisor.png'
 import multiagent_workerPNG from '@/assets/images/multiagent_worker.png'
 import audioUploadSVG from '@/assets/images/wave-sound.jpg'
@@ -1541,30 +1541,32 @@ export const ChatMessage = ({ open, chatflowid, isAgentCanvas, isDialog, preview
                 className={`${isDialog ? 'cloud-dialog' : 'cloud'}`}
                 style={{ display: 'flex', flexDirection: 'column', justifyContent: 'flex-start', alignItems: 'center' }}
             >
-                <div
-                    style={{
-                        display: 'flex',
-                        flexDirection: 'row',
-                        justifyContent: 'flex-start',
-                        alignItems: 'center',
-                        gap: '7rem',
-                        backgroundColor: '#4a3889',
-                        width: '100%',
-                        height: '55px',
-                        padding: '5px 14px',
-                        position: 'fixed',
-                        top: 0,
-                        left: 0,
-                        zIndex: 1000,
-                        borderTopLeftRadius: '12px'
-                    }}
-                >
-                    <img src='/aicodepro.png' alt='aichatpro' width={35} height={40} />
-                    <h4 style={{ fontSize: '20px', fontWeight: '700', color: 'white', textAlign: 'center' }}>
-                        AiChat<span style={{ color: '#ffaa00', margin: '0px' }}>Pro</span>
-                    </h4>
-                </div>
-                <div id='messagelist' className={'messagelist'}>
+                {!isDialog && (
+                    <div
+                        style={{
+                            display: 'flex',
+                            flexDirection: 'row',
+                            justifyContent: 'flex-start',
+                            alignItems: 'center',
+                            gap: '7rem',
+                            backgroundColor: '#4a3889',
+                            width: '100%',
+                            height: '55px',
+                            padding: '5px 14px',
+                            position: 'fixed',
+                            top: 0,
+                            left: 0,
+                            zIndex: 1000,
+                            borderTopLeftRadius: '12px'
+                        }}
+                    >
+                        <img src='/aicodepro.png' alt='aichatpro' width={35} height={40} />
+                        <h4 style={{ fontSize: '20px', fontWeight: '700', color: 'white', textAlign: 'center' }}>
+                            AiChat<span style={{ color: '#ffaa00', margin: '0px' }}>Pro</span>
+                        </h4>
+                    </div>
+                )}
+                <div id='messagelist' className={'messagelist'} style={{ marginTop: isDialog ? '-0.5rem' : '3.5rem' }}>
                     {messages &&
                         messages.map((message, index) => {
                             return (
@@ -1592,7 +1594,7 @@ export const ChatMessage = ({ open, chatflowid, isAgentCanvas, isDialog, preview
                                     {message.type === 'apiMessage' || message.type === 'leadCaptureMessage' ? (
                                         <img src='/aicodeproLogo.png' alt='AI' width='30' height='30' className='boticon' />
                                     ) : (
-                                        <img src={userPNG} alt='Me' width='30' height='30' className='usericon' />
+                                        <img src='/user.png' alt='Me' width='30' height='30' className='usericon' />
                                     )}
                                     <div
                                         style={{
@@ -2322,7 +2324,7 @@ export const ChatMessage = ({ open, chatflowid, isAgentCanvas, isDialog, preview
                                                     // Send icon SVG in input field
                                                     <IconSend
                                                         color={
-                                                            getInputDisabled() ? '#9e9e9e' : customization.isDarkMode ? 'white' : '#1e88e5'
+                                                            getInputDisabled() ? '#9e9e9e' : customization.isDarkMode ? 'white' : '#4a3889'
                                                         }
                                                     />
                                                 )}
@@ -2340,7 +2342,7 @@ export const ChatMessage = ({ open, chatflowid, isAgentCanvas, isDialog, preview
                                                                     ? '#9e9e9e'
                                                                     : customization.isDarkMode
                                                                     ? 'white'
-                                                                    : '#1e88e5'
+                                                                    : '#4a3889'
                                                             }
                                                         />
                                                     </IconButton>
