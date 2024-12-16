@@ -16,20 +16,23 @@ class AicodeproApi implements INodeCredential {
                 name: 'tenantId',
                 description: 'Your assigned tenant id of Aicodepro',
                 placeholder: 'e.g. 142',
-                type: 'string'
+                type: 'string',
+                optional: true
             },
             {
                 label: 'Store ID',
                 name: 'storeId',
                 description: 'Your assigned tenant id of Aicodepro',
                 placeholder: `e.g. 135`,
-                type: 'string'
+                type: 'string',
+                optional: true
             },
             {
                 label: 'Token',
                 name: 'token',
                 description: 'Assigned token',
-                type: 'string'
+                type: 'string',
+                optional: true
             }
         ]
     }

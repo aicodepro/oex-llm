@@ -76,7 +76,6 @@ export class RankNow extends Tool {
             // Submit URLs for indexing
             for (const url of urls) {
                 try {
-                    console.log(url)
                     const response = await indexing.urlNotifications.publish({
                         requestBody: {
                             type: 'URL_UPDATED',
