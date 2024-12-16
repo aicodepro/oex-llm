@@ -89,7 +89,7 @@ importers:
                 version: 6.2.8(openapi-types@12.1.3)
             swagger-ui-express:
                 specifier: ^5.0.0
-                version: 5.0.1(express@4.18.3)
+                version: 5.0.1(express@4.21.2)
         devDependencies:
             '@types/swagger-jsdoc':
                 specifier: ^6.0.1
@@ -162,7 +162,7 @@ importers:
                 version: 0.0.7(encoding@0.1.13)(langchain@0.2.20)(openai@4.57.3(encoding@0.1.13)(zod@3.22.4))
             '@langchain/community':
                 specifier: ^0.2.17
-                version: 0.2.17(4csn377sbfmma7rbylxcz3fzh4)
+                version: 0.2.17(tze5z6d7xn6hj755faaosectz4)
             '@langchain/core':
                 specifier: 0.2.18
                 version: 0.2.18(langchain@0.2.20)(openai@4.57.3(encoding@0.1.13)(zod@3.22.4))
@@ -289,6 +289,9 @@ importers:
             google-auth-library:
                 specifier: ^9.4.0
                 version: 9.6.3(encoding@0.1.13)
+            googleapis:
+                specifier: ^144.0.0
+                version: 144.0.0(encoding@0.1.13)
             graphql:
                 specifier: ^16.6.0
                 version: 16.8.1
@@ -713,10 +716,10 @@ importers:
                 version: 16.4.5
             flowise-embed:
                 specifier: latest
-                version: 2.0.7
+                version: 2.0.8
             flowise-embed-react:
                 specifier: latest
-                version: 1.0.6(@types/node@20.12.12)(flowise-embed@2.0.7)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(sass@1.71.1)(terser@5.29.1)(typescript@5.5.2)
+                version: 1.0.6(@types/node@20.12.12)(flowise-embed@2.0.8)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(sass@1.71.1)(terser@5.29.1)(typescript@5.5.2)
             flowise-react-json-view:
                 specifier: '*'
                 version: 1.21.7(@types/react@18.2.65)(encoding@0.1.13)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
@@ -6679,6 +6682,9 @@ packages:
     axios@1.7.2:
         resolution: { integrity: sha512-2A8QhOMrbomlDuiLeK9XibIBzuHeRcqqNOHp0Cyp5EoJ1IFDh+XZH3A6BkXtv0K4gFGCI0Y4BM7B1wOEi0Rmgw== }
 
+    axios@1.7.9:
+        resolution: { integrity: sha512-LhLcE7Hbiryz8oMDdDptSrWowmB4Bl6RCt6sIJKpRB4XtVf0iEgewX3au/pJqm+Py1kCASkb/FFKjxQaLtxJvw== }
+
     axobject-query@3.2.1:
         resolution: { integrity: sha512-jsyHu61e6N4Vbz/v18DHwWYKK0bSWLqn47eeDSKPB7m8tqMHF9YJ+mhIk2lVteyZrY8tnSj/jHOv4YiTCuCJgg== }
 
@@ -6916,6 +6922,10 @@ packages:
 
     body-parser@1.20.2:
         resolution: { integrity: sha512-ml9pReCu3M61kGlqoTm2umSXTlRTuGTx0bfYj+uIUKKYycG5NtSbeetV3faSU6R7ajOPw0g/J1PvK4qNy7s5bA== }
+        engines: { node: '>= 0.8', npm: 1.2.8000 || >= 1.4.16 }
+
+    body-parser@1.20.3:
+        resolution: { integrity: sha512-7rAxByjUMqQ3/bHJy7D6OGXvx/MMc4IqBn/X0fcM1QUcAItpZrBEYhWGem+tzXH90c+G01ypMcYJBO9Y30203g== }
         engines: { node: '>= 0.8', npm: 1.2.8000 || >= 1.4.16 }
 
     bonjour-service@1.2.1:
@@ -7571,6 +7581,10 @@ packages:
         resolution: { integrity: sha512-YZ3GUyn/o8gfKJlnlX7g7xq4gyO6OSuhGPKaaGssGB2qgDUS0gPgtTvoyZLTt9Ab6dC4hfc9dV5arkvc/OCmrw== }
         engines: { node: '>= 0.6' }
 
+    cookie@0.7.1:
+        resolution: { integrity: sha512-6DnInpx7SJ2AK3+CTUE/ZM0vWTUboZCegxhC2xiIydHR9jNuTAASBrfEpHhiGOZw/nX51bHt6YQl8jsGo4y/0w== }
+        engines: { node: '>= 0.6' }
+
     copy-descriptor@0.1.1:
         resolution: { integrity: sha512-XgZ0pFcakEUlbwQEVNg3+QAis1FyTL3Qel9FYy8pSkQqoG3PNoT0bOCQtOXcOkur21r2Eq2kI+IE+gsmAEVlYw== }
         engines: { node: '>=0.10.0' }
@@ -7625,6 +7639,11 @@ packages:
 
     crelt@1.0.6:
         resolution: { integrity: sha512-VQ2MBenTq1fWZUH9DJNGti7kKv6EeAuYr3cLwxUWhIu1baTaXh4Ib5W2CqHVqib4/MqbYGJqiL3Zb8GJZr3l4g== }
+
+    cross-env@7.0.3:
+        resolution: { integrity: sha512-+/HKd6EgcQCJGh2PSjZuUitQBQynKor4wrFbRg4DtAgS1aWO+gU52xpH7M9ScGgXSYmAVS9bIJ8EzuaGw0oNAw== }
+        engines: { node: '>=10.14', npm: '>=6', yarn: '>=1' }
+        hasBin: true
 
     cross-fetch@3.1.8:
         resolution: { integrity: sha512-cvA+JwZoU0Xq+h6WkMvAUqPEYy92Obet6UdKLfW60qn99ftItKjB5T+BkyWOFWe2pUyfQ+IJHmpOTznqk1M6Kg== }
@@ -7861,6 +7880,10 @@ packages:
     dashdash@1.14.1:
         resolution: { integrity: sha512-jRFi8UDGo6j+odZiEpjazZaWqEal3w/basFjQHQEwVtZJGDpxbH1MeYluwCS8Xq5wmLJooDlMgvVarmWfGM44g== }
         engines: { node: '>=0.10' }
+
+    data-uri-to-buffer@4.0.1:
+        resolution: { integrity: sha512-0R9ikRb668HB7QDxT1vkpuUBtqc53YyAwMwGeUFKRojY/NWKvdZ+9UYtRfGmhqNbRkTSVpMbmyhXipFFv2cb/A== }
+        engines: { node: '>= 12' }
 
     data-uri-to-buffer@6.0.2:
         resolution: { integrity: sha512-7hvf7/GW8e86rW0ptuwS3OcBGDjIi6SZva7hCyWC0yYry2cOPmLIjXAUHI6DK2HsnwJd9ifmt57i8eV2n4YNpw== }
@@ -8277,6 +8300,10 @@ packages:
 
     encodeurl@1.0.2:
         resolution: { integrity: sha512-TPJXq8JqFaVYm2CWmPvnP2Iyo4ZSM7/QKcSmuMLDObfpH5fi7RUGmd/rTDf+rut/saiDiQEeVTNgAmJEdAOx0w== }
+        engines: { node: '>= 0.8' }
+
+    encodeurl@2.0.0:
+        resolution: { integrity: sha512-Q0n9HRi4m6JuGIV1eFlmvJB7ZEVxu93IrMyiMsGC0lrMJMWzRgx6WGquyfQgZVb31vhGgXnfmPNNXmxnOkRBrg== }
         engines: { node: '>= 0.8' }
 
     encoding@0.1.13:
@@ -8730,6 +8757,10 @@ packages:
         resolution: { integrity: sha512-6VyCijWQ+9O7WuVMTRBTl+cjNNIzD5cY5mQ1WM8r/LEkI2u8EYpOotESNwzNlyCn3g+dmjKYI6BmNneSr/FSRw== }
         engines: { node: '>= 0.10.0' }
 
+    express@4.21.2:
+        resolution: { integrity: sha512-28HqgMZAmih1Czt9ny7qr6ek2qddF4FclbMzwhCREB6OFfH+rXAnuNCwo1/wFvrtbgsQDb4kSbX9de9lFbrXnA== }
+        engines: { node: '>= 0.10.0' }
+
     ext@1.7.0:
         resolution: { integrity: sha512-6hxeJYaL110a9b5TEJSj0gojyHQAmA2ch5Os+ySCiA1QGdS697XWY1pzsrSjqA9LDEEgdB/KypIlR59RcLuHYw== }
 
@@ -8848,6 +8879,10 @@ packages:
     fecha@4.2.3:
         resolution: { integrity: sha512-OP2IUU6HeYKJi3i0z4A19kHMQoLVs4Hc+DPqqxI2h/DPZHTm/vjsfC6P0b4jCMy14XizLBqvndQ+UilD7707Jw== }
 
+    fetch-blob@3.2.0:
+        resolution: { integrity: sha512-7yAQpD2UMJzLi1Dqv7qFYnPbaPx7ZfFK6PiIxQ4PfkGPyNyl2Ugx+a/umUonmKqjhM4DnfbMvdX6otXq83soQQ== }
+        engines: { node: ^12.20 || >= 14.13 }
+
     fetch-h2@3.0.2:
         resolution: { integrity: sha512-Lo6UPdMKKc9Ond7yjG2vq0mnocspOLh1oV6+XZdtfdexacvMSz5xm3WoQhTAdoR2+UqPlyMNqcqfecipoD+l/A== }
         engines: { node: '>=12' }
@@ -8890,6 +8925,10 @@ packages:
 
     finalhandler@1.2.0:
         resolution: { integrity: sha512-5uXcUVftlQMFnWC9qu/svkWv3GTd2PfUhK/3PLkYNAe7FbqJMt3515HaxE6eRL74GdsriiwujiawdaB1BpEISg== }
+        engines: { node: '>= 0.8' }
+
+    finalhandler@1.3.1:
+        resolution: { integrity: sha512-6BN9trH7bp3qvnrRyzsBz+g3lZxTNZTbVO2EV1CS0WIcDbawYVdYvGflME/9QP0h0pYlCDBCTjYa9nZzMDpyxQ== }
         engines: { node: '>= 0.8' }
 
     find-cache-dir@3.3.2:
@@ -8961,8 +9000,8 @@ packages:
             flowise-embed: '*'
             react: 18.x
 
-    flowise-embed@2.0.7:
-        resolution: { integrity: sha512-iROzt70fQPFQkC9sKcQolLnWRm2Qd2x46MFVGohwXBzBJD9EqPON0fIkRNZUYzQbrErkoMpaZb7D9zXuIP9PUw== }
+    flowise-embed@2.0.8:
+        resolution: { integrity: sha512-3/QVrnuby2qo5tiiLlqYec/M3P5FfzMJqBRV9FLgQ7WPnuDbkA+VCQtYVk7mU1gkktjmyaXba9EshRbs+Pj7Mw== }
 
     flowise-react-json-view@1.21.7:
         resolution: { integrity: sha512-oFjwtSLJkUWk6waLh8heCQ4o9b60FJRA2X8LefaZp5WaJvj/Rr2HILjk+ocf1JkfTcq8jc6t2jfIybg4leWsaQ== }
@@ -9054,6 +9093,10 @@ packages:
         resolution: { integrity: sha512-ETEklSGi5t0QMZuiXoA/Q6vcnxcLQP5vdugSpuAyi6SVGi2clPPp+xgEhuMaHC+zGgn31Kd235W35f7Hykkaww== }
         engines: { node: '>= 6' }
 
+    form-data@4.0.1:
+        resolution: { integrity: sha512-tzN8e4TX8+kkxGPK8D5u0FNmjPUjw3lwC9lSLxxoB/+GtsJG91CO8bSWy73APlgAZzZbXEYZJuxjkHH2w+Ezhw== }
+        engines: { node: '>= 6' }
+
     format@0.2.2:
         resolution: { integrity: sha512-wzsgA6WOq+09wrU1tsJ09udeR/YZRaeArL9e1wPbFg3GG2yDnC2ldKpxs4xunpFF9DgqCqOIra3bc1HWrJ37Ww== }
         engines: { node: '>=0.4.x' }
@@ -9065,6 +9108,10 @@ packages:
     formdata-node@6.0.3:
         resolution: { integrity: sha512-8e1++BCiTzUno9v5IZ2J6bv4RU+3UKDmqWUQD0MIMVCd9AdhWkO1gw57oo1mNEX1dMq2EGI+FbWz4B92pscSQg== }
         engines: { node: '>= 18' }
+
+    formdata-polyfill@4.0.10:
+        resolution: { integrity: sha512-buewHzMvYL29jdeQTVILecSaZKnt/RJWjoZCF5OW60Z67/GmSLBkOFM7qh1PI3zFNtJbaZL5eQu1vLfazOwj4g== }
+        engines: { node: '>=12.20.0' }
 
     formik@2.4.5:
         resolution: { integrity: sha512-Gxlht0TD3vVdzMDHwkiNZqJ7Mvg77xQNfmBRrNtvzcHZs72TJppSTDKHpImCMJZwcWPBJ8jSQQ95GJzXFf1nAQ== }
@@ -9371,6 +9418,10 @@ packages:
         resolution: { integrity: sha512-f7aQCJODJFmYWN6PeNKzgvy9LI2tYmXnzpNDHEjG5sDNPgGb2FXQyTBnXeSH+PAtpKESFD+LmHw3Ox3mN7e1Fg== }
         engines: { node: '>=12' }
 
+    google-auth-library@9.15.0:
+        resolution: { integrity: sha512-7ccSEJFDFO7exFbO6NRyC+xH8/mZ1GZGG2xxx9iHxZWcjUjJpjWxIMw3cofAKcueZ6DATiukmmprD7yavQHOyQ== }
+        engines: { node: '>=14' }
+
     google-auth-library@9.6.3:
         resolution: { integrity: sha512-4CacM29MLC2eT9Cey5GDVK4Q8t+MMp8+OEdOaqD9MG6b0dOyLORaaeJMPQ7EESVgm/+z5EKYyFLxgzBJlJgyHQ== }
         engines: { node: '>=14' }
@@ -9387,6 +9438,14 @@ packages:
 
     google-protobuf@3.21.2:
         resolution: { integrity: sha512-3MSOYFO5U9mPGikIYCzK0SaThypfGgS6bHqrUGXG3DPHCrb+txNqeEcns1W0lkGfk0rCyNXm7xB9rMxnCiZOoA== }
+
+    googleapis-common@7.2.0:
+        resolution: { integrity: sha512-/fhDZEJZvOV3X5jmD+fKxMqma5q2Q9nZNSF3kn1F18tpxmA86BcTxAGBQdM0N89Z3bEaIs+HVznSmFJEAmMTjA== }
+        engines: { node: '>=14.0.0' }
+
+    googleapis@144.0.0:
+        resolution: { integrity: sha512-ELcWOXtJxjPX4vsKMh+7V+jZvgPwYMlEhQFiu2sa9Qmt5veX8nwXPksOWGGN6Zk4xCiLygUyaz7xGtcMO+Onxw== }
+        engines: { node: '>=14.0.0' }
 
     gopd@1.0.1:
         resolution: { integrity: sha512-d65bNlIadxvpb/A2abVdlqKqV563juRnZ1Wtk6s1sIR8uNsXR70xqIzVqxVf1eTqDunwT2MkczEeaezCKTZhwA== }
@@ -11532,6 +11591,9 @@ packages:
     merge-descriptors@1.0.1:
         resolution: { integrity: sha512-cCi6g3/Zr1iqQi6ySbseM1Xvooa98N0w31jzUYrXPX2xqObmFGHJ0tQ5u74H3mVh7wLouTseZyYIq39g8cNp1w== }
 
+    merge-descriptors@1.0.3:
+        resolution: { integrity: sha512-gaNvAS7TZ897/rVaZ0nMtAyxNyi/pdbjbAwUpFQpN70GqnVfOiXpeUUMKRBmzXaSQ8DdTX4/0ms62r2K+hE6mQ== }
+
     merge-stream@2.0.0:
         resolution: { integrity: sha512-abv/qOcuPfk3URPfDzmZU1LKmuw8kT+0nIHvKrKgFrwifol/doWcdA4ZqsWQ8ENrFKkd67Mfpo/LovbIUsbt3w== }
 
@@ -12026,6 +12088,10 @@ packages:
         peerDependenciesMeta:
             encoding:
                 optional: true
+
+    node-fetch@3.3.2:
+        resolution: { integrity: sha512-dRB78srN/l6gqWulah9SrxeYnxeddIG30+GOqK/9OlLVyLg3HPnr6SqOWTWOXKRwC2eGYCkZ59NNuSgvSrpgOA== }
+        engines: { node: ^12.20.0 || ^14.13.1 || >=16.0.0 }
 
     node-forge@1.3.1:
         resolution: { integrity: sha512-dPEtOeMvF9VMcYV/1Wb8CPoVAXtp6MKMlcbAt4ddqmGqUJ6fQZFXkNZNkNlfevtNkGtaSoXf/vNNNSvgrdXwtA== }
@@ -12607,6 +12673,9 @@ packages:
     path-scurry@1.10.1:
         resolution: { integrity: sha512-MkhCqzzBEpPvxxQ71Md0b1Kk51W01lrYvlMzSUaIzNsODdd7mqhiimSZlr+VegAz5Z6Vzt9Xg2ttE//XBhH3EQ== }
         engines: { node: '>=16 || 14 >=14.17' }
+
+    path-to-regexp@0.1.12:
+        resolution: { integrity: sha512-RA1GjUVMnvYFxuqovrEqZoxxW5NUZqbwKtYz/Tt7nXerk0LbLblQmrsgdeOxV5SFHf0UDggjS/bSeOZwt1pmEQ== }
 
     path-to-regexp@0.1.7:
         resolution: { integrity: sha512-5DFkuoqlv1uYQKxy8omFBeJPQcdoE07Kv2sferDCrAq1ohOU+MSDswDIbnx3YAM60qIOnYa53wBhXW0EbMonrQ== }
@@ -13518,6 +13587,10 @@ packages:
         resolution: { integrity: sha512-zWmv4RSuB9r2mYQw3zxQuHWeU+42aKi1wWig/j4ele4ygELZ7PEO6MM7rim9oAQH2A5MWfsAVf/jPvTPgCbvUQ== }
         engines: { node: '>=0.6' }
 
+    qs@6.13.0:
+        resolution: { integrity: sha512-+38qI9SOr8tfZ4QmJNplMUxqjbe7LKvvZgWdExBOmd+egZTtjLB67Gu0HRX3u/XOq7UU2Nx6nsjvS16Z9uwfpg== }
+        engines: { node: '>=0.6' }
+
     query-string@8.2.0:
         resolution: { integrity: sha512-tUZIw8J0CawM5wyGBiDOAp7ObdRQh4uBor/fUR9ZjmbZVvw95OD9If4w3MQxr99rg0DJZ/9CIORcpEqU5hQG7g== }
         engines: { node: '>=14.16' }
@@ -14293,6 +14366,10 @@ packages:
         resolution: { integrity: sha512-qqWzuOjSFOuqPjFe4NOsMLafToQQwBSOEpS+FwEt3A2V3vKubTquT3vmLTQpFgMXp8AlFWFuP1qKaJZOtPpVXg== }
         engines: { node: '>= 0.8.0' }
 
+    send@0.19.0:
+        resolution: { integrity: sha512-dW41u5VfLXu8SJh5bwRmyYUbAoSB3c9uQh6L8h/KtsFREPWpbX1lrljJo186Jc4nmci/sGUZ9a0a0J2zgfq2hw== }
+        engines: { node: '>= 0.8.0' }
+
     seq-queue@0.0.5:
         resolution: { integrity: sha512-hr3Wtp/GZIc/6DAGPDcV4/9WoZhjrkXsi5B/07QgX8tsdc6ilr7BFM6PM6rbdAX1kFSDYeZGLipIZZKyQP0O5Q== }
 
@@ -14316,6 +14393,10 @@ packages:
 
     serve-static@1.15.0:
         resolution: { integrity: sha512-XGuRDNjXUijsUL0vl6nSD7cwURuzEgglbOaFuZM9g3kwDXOWVTck0jLzjPzGD+TazWbboZYu52/9/XPdUgne9g== }
+        engines: { node: '>= 0.8.0' }
+
+    serve-static@1.16.2:
+        resolution: { integrity: sha512-VqpjJZKadQB/PEbEwvFdO43Ax5dFBZ2UECszz8bQ7pi7wt//PWe1P6MN7eCnjsatYtBT6EuiClbjSWP2WrIoTw== }
         engines: { node: '>= 0.8.0' }
 
     set-blocking@2.0.0:
@@ -15639,6 +15720,9 @@ packages:
 
     url-parse@1.5.10:
         resolution: { integrity: sha512-WypcfiRhfeUP9vvF0j6rw0J3hrWrw6iZv3+22h6iRMJ/8z1Tj6XfLP4DsUix5MhMPnXpiHDoKyoZ/bdCkwBCiQ== }
+
+    url-template@2.0.8:
+        resolution: { integrity: sha512-XdVKMF4SJ0nP/O7XIPB0JwAEuT9lDIYnNsK8yGVe43y0AWoKeJNdv3ZNWh7ksJ6KqQFjOO6ox/VEitLnaVNufw== }
 
     url@0.10.3:
         resolution: { integrity: sha512-hzSUW2q06EqL1gKM/a+obYHLIO6ct2hwPuviqTTOcfFVc61UbfJ2Q32+uGL/HCPxKqrdGB5QUwIe7UqlDgwsOQ== }
@@ -18119,7 +18203,7 @@ snapshots:
             '@babel/core': 7.24.0
             '@babel/helper-compilation-targets': 7.23.6
             '@babel/helper-plugin-utils': 7.24.5
-            debug: 4.3.4(supports-color@8.1.1)
+            debug: 4.3.7
             lodash.debounce: 4.0.8
             resolve: 1.22.8
         transitivePeerDependencies:
@@ -20358,7 +20442,7 @@ snapshots:
             - langchain
             - openai
 
-    '@langchain/community@0.2.17(4csn377sbfmma7rbylxcz3fzh4)':
+    '@langchain/community@0.2.17(tze5z6d7xn6hj755faaosectz4)':
         dependencies:
             '@langchain/core': 0.2.18(langchain@0.2.3(2eb4qs3hciity2fudj3xt7m5ha))(openai@4.57.3(encoding@0.1.13)(zod@3.22.4))
             '@langchain/openai': 0.1.3(encoding@0.1.13)(langchain@0.2.3(2eb4qs3hciity2fudj3xt7m5ha))
@@ -20412,6 +20496,7 @@ snapshots:
             d3-dsv: 2.0.0
             faiss-node: 0.5.1
             google-auth-library: 9.6.3(encoding@0.1.13)
+            googleapis: 144.0.0(encoding@0.1.13)
             html-to-text: 9.0.5
             ignore: 5.3.1
             ioredis: 5.3.2
@@ -24089,7 +24174,7 @@ snapshots:
 
     agent-base@7.1.0:
         dependencies:
-            debug: 4.3.4(supports-color@8.1.1)
+            debug: 4.3.7
         transitivePeerDependencies:
             - supports-color
 
@@ -24530,6 +24615,14 @@ snapshots:
         transitivePeerDependencies:
             - debug
 
+    axios@1.7.9:
+        dependencies:
+            follow-redirects: 1.15.6(debug@4.3.4)
+            form-data: 4.0.1
+            proxy-from-env: 1.1.0
+        transitivePeerDependencies:
+            - debug
+
     axobject-query@3.2.1:
         dependencies:
             dequal: 2.0.3
@@ -24926,6 +25019,23 @@ snapshots:
             iconv-lite: 0.4.24
             on-finished: 2.4.1
             qs: 6.11.0
+            raw-body: 2.5.2
+            type-is: 1.6.18
+            unpipe: 1.0.0
+        transitivePeerDependencies:
+            - supports-color
+
+    body-parser@1.20.3:
+        dependencies:
+            bytes: 3.1.2
+            content-type: 1.0.5
+            debug: 2.6.9
+            depd: 2.0.0
+            destroy: 1.2.0
+            http-errors: 2.0.0
+            iconv-lite: 0.4.24
+            on-finished: 2.4.1
+            qs: 6.13.0
             raw-body: 2.5.2
             type-is: 1.6.18
             unpipe: 1.0.0
@@ -25675,6 +25785,8 @@ snapshots:
 
     cookie@0.5.0: {}
 
+    cookie@0.7.1: {}
+
     copy-descriptor@0.1.1: {}
 
     copy-props@2.0.5:
@@ -25746,6 +25858,10 @@ snapshots:
     create-require@1.1.1: {}
 
     crelt@1.0.6: {}
+
+    cross-env@7.0.3:
+        dependencies:
+            cross-spawn: 7.0.3
 
     cross-fetch@3.1.8(encoding@0.1.13):
         dependencies:
@@ -26038,6 +26154,8 @@ snapshots:
     dashdash@1.14.1:
         dependencies:
             assert-plus: 1.0.0
+
+    data-uri-to-buffer@4.0.1: {}
 
     data-uri-to-buffer@6.0.2: {}
 
@@ -26451,6 +26569,8 @@ snapshots:
     enabled@2.0.0: {}
 
     encodeurl@1.0.2: {}
+
+    encodeurl@2.0.0: {}
 
     encoding@0.1.13:
         dependencies:
@@ -27175,6 +27295,42 @@ snapshots:
         transitivePeerDependencies:
             - supports-color
 
+    express@4.21.2:
+        dependencies:
+            accepts: 1.3.8
+            array-flatten: 1.1.1
+            body-parser: 1.20.3
+            content-disposition: 0.5.4
+            content-type: 1.0.5
+            cookie: 0.7.1
+            cookie-signature: 1.0.6
+            debug: 2.6.9
+            depd: 2.0.0
+            encodeurl: 2.0.0
+            escape-html: 1.0.3
+            etag: 1.8.1
+            finalhandler: 1.3.1
+            fresh: 0.5.2
+            http-errors: 2.0.0
+            merge-descriptors: 1.0.3
+            methods: 1.1.2
+            on-finished: 2.4.1
+            parseurl: 1.3.3
+            path-to-regexp: 0.1.12
+            proxy-addr: 2.0.7
+            qs: 6.13.0
+            range-parser: 1.2.1
+            safe-buffer: 5.2.1
+            send: 0.19.0
+            serve-static: 1.16.2
+            setprototypeof: 1.2.0
+            statuses: 2.0.1
+            type-is: 1.6.18
+            utils-merge: 1.0.1
+            vary: 1.1.2
+        transitivePeerDependencies:
+            - supports-color
+
     ext@1.7.0:
         dependencies:
             type: 2.7.2
@@ -27320,6 +27476,11 @@ snapshots:
 
     fecha@4.2.3: {}
 
+    fetch-blob@3.2.0:
+        dependencies:
+            node-domexception: 1.0.0
+            web-streams-polyfill: 3.3.3
+
     fetch-h2@3.0.2:
         dependencies:
             '@types/tough-cookie': 4.0.5
@@ -27369,6 +27530,18 @@ snapshots:
         dependencies:
             debug: 2.6.9
             encodeurl: 1.0.2
+            escape-html: 1.0.3
+            on-finished: 2.4.1
+            parseurl: 1.3.3
+            statuses: 2.0.1
+            unpipe: 1.0.0
+        transitivePeerDependencies:
+            - supports-color
+
+    finalhandler@1.3.1:
+        dependencies:
+            debug: 2.6.9
+            encodeurl: 2.0.0
             escape-html: 1.0.3
             on-finished: 2.4.1
             parseurl: 1.3.3
@@ -27457,10 +27630,10 @@ snapshots:
 
     flatted@3.3.1: {}
 
-    flowise-embed-react@1.0.6(@types/node@20.12.12)(flowise-embed@2.0.7)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(sass@1.71.1)(terser@5.29.1)(typescript@5.5.2):
+    flowise-embed-react@1.0.6(@types/node@20.12.12)(flowise-embed@2.0.8)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(sass@1.71.1)(terser@5.29.1)(typescript@5.5.2):
         dependencies:
             '@ladle/react': 2.5.1(@types/node@20.12.12)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(sass@1.71.1)(terser@5.29.1)(typescript@5.5.2)
-            flowise-embed: 2.0.7
+            flowise-embed: 2.0.8
             react: 18.2.0
         transitivePeerDependencies:
             - '@types/node'
@@ -27474,18 +27647,27 @@ snapshots:
             - terser
             - typescript
 
-    flowise-embed@2.0.7:
+    flowise-embed@2.0.8:
         dependencies:
             '@babel/core': 7.24.0
             '@microsoft/fetch-event-source': 2.0.1
             '@ts-stack/markdown': 1.5.0
+            axios: 1.7.9
+            cors: 2.8.5
+            cross-env: 7.0.3
             device-detector-js: 3.0.3
+            dotenv: 16.4.5
+            express: 4.21.2
+            form-data: 4.0.1
             lodash: 4.17.21
+            multer: 1.4.5-lts.1
+            node-fetch: 3.3.2
             prettier: 3.2.5
             solid-element: 1.7.0(solid-js@1.7.1)
             solid-js: 1.7.1
             zod: 3.22.4
         transitivePeerDependencies:
+            - debug
             - supports-color
 
     flowise-react-json-view@1.21.7(@types/react@18.2.65)(encoding@0.1.13)(react-dom@18.2.0(react@18.2.0))(react@18.2.0):
@@ -27588,6 +27770,12 @@ snapshots:
             combined-stream: 1.0.8
             mime-types: 2.1.35
 
+    form-data@4.0.1:
+        dependencies:
+            asynckit: 0.4.0
+            combined-stream: 1.0.8
+            mime-types: 2.1.35
+
     format@0.2.2: {}
 
     formdata-node@4.4.1:
@@ -27596,6 +27784,10 @@ snapshots:
             web-streams-polyfill: 4.0.0-beta.3
 
     formdata-node@6.0.3: {}
+
+    formdata-polyfill@4.0.10:
+        dependencies:
+            fetch-blob: 3.2.0
 
     formik@2.4.5(react@18.2.0):
         dependencies:
@@ -27821,7 +28013,7 @@ snapshots:
         dependencies:
             basic-ftp: 5.0.5
             data-uri-to-buffer: 6.0.2
-            debug: 4.3.4(supports-color@8.1.1)
+            debug: 4.3.7
             fs-extra: 11.2.0
         transitivePeerDependencies:
             - supports-color
@@ -28012,6 +28204,18 @@ snapshots:
             - encoding
             - supports-color
 
+    google-auth-library@9.15.0(encoding@0.1.13):
+        dependencies:
+            base64-js: 1.5.1
+            ecdsa-sig-formatter: 1.0.11
+            gaxios: 6.3.0(encoding@0.1.13)
+            gcp-metadata: 6.1.0(encoding@0.1.13)
+            gtoken: 7.1.0(encoding@0.1.13)
+            jws: 4.0.0
+        transitivePeerDependencies:
+            - encoding
+            - supports-color
+
     google-auth-library@9.6.3(encoding@0.1.13):
         dependencies:
             base64-js: 1.5.1
@@ -28047,6 +28251,26 @@ snapshots:
             node-forge: 1.3.1
 
     google-protobuf@3.21.2: {}
+
+    googleapis-common@7.2.0(encoding@0.1.13):
+        dependencies:
+            extend: 3.0.2
+            gaxios: 6.3.0(encoding@0.1.13)
+            google-auth-library: 9.15.0(encoding@0.1.13)
+            qs: 6.12.1
+            url-template: 2.0.8
+            uuid: 9.0.1
+        transitivePeerDependencies:
+            - encoding
+            - supports-color
+
+    googleapis@144.0.0(encoding@0.1.13):
+        dependencies:
+            google-auth-library: 9.6.3(encoding@0.1.13)
+            googleapis-common: 7.2.0(encoding@0.1.13)
+        transitivePeerDependencies:
+            - encoding
+            - supports-color
 
     gopd@1.0.1:
         dependencies:
@@ -28434,7 +28658,7 @@ snapshots:
     http-call@5.3.0:
         dependencies:
             content-type: 1.0.5
-            debug: 4.3.4(supports-color@8.1.1)
+            debug: 4.3.7
             is-retry-allowed: 1.2.0
             is-stream: 2.0.1
             parse-json: 4.0.0
@@ -28480,7 +28704,7 @@ snapshots:
     http-proxy-agent@7.0.2:
         dependencies:
             agent-base: 7.1.0
-            debug: 4.3.4(supports-color@8.1.1)
+            debug: 4.3.7
         transitivePeerDependencies:
             - supports-color
 
@@ -28499,7 +28723,7 @@ snapshots:
     http-proxy@1.18.1:
         dependencies:
             eventemitter3: 4.0.7
-            follow-redirects: 1.15.5(debug@4.3.4)
+            follow-redirects: 1.15.6(debug@4.3.4)
             requires-port: 1.0.0
         transitivePeerDependencies:
             - debug
@@ -28983,7 +29207,7 @@ snapshots:
 
     istanbul-lib-source-maps@4.0.1:
         dependencies:
-            debug: 4.3.4(supports-color@8.1.1)
+            debug: 4.3.7
             istanbul-lib-coverage: 3.2.2
             source-map: 0.6.1
         transitivePeerDependencies:
@@ -30656,6 +30880,8 @@ snapshots:
 
     merge-descriptors@1.0.1: {}
 
+    merge-descriptors@1.0.3: {}
+
     merge-stream@2.0.0: {}
 
     merge2@1.4.1: {}
@@ -30870,7 +31096,7 @@ snapshots:
     micromark@3.2.0:
         dependencies:
             '@types/debug': 4.1.12
-            debug: 4.3.4(supports-color@8.1.1)
+            debug: 4.3.7
             decode-named-character-reference: 1.0.2
             micromark-core-commonmark: 1.1.0
             micromark-factory-space: 1.1.0
@@ -31232,6 +31458,12 @@ snapshots:
             whatwg-url: 5.0.0
         optionalDependencies:
             encoding: 0.1.13
+
+    node-fetch@3.3.2:
+        dependencies:
+            data-uri-to-buffer: 4.0.1
+            fetch-blob: 3.2.0
+            formdata-polyfill: 4.0.10
 
     node-forge@1.3.1: {}
 
@@ -31806,7 +32038,7 @@ snapshots:
 
     p-transform@1.3.0:
         dependencies:
-            debug: 4.3.4(supports-color@8.1.1)
+            debug: 4.3.7
             p-queue: 6.6.2
         transitivePeerDependencies:
             - supports-color
@@ -31817,7 +32049,7 @@ snapshots:
         dependencies:
             '@tootallnate/quickjs-emscripten': 0.23.0
             agent-base: 7.1.0
-            debug: 4.3.4(supports-color@8.1.1)
+            debug: 4.3.7
             get-uri: 6.0.3
             http-proxy-agent: 7.0.2
             https-proxy-agent: 7.0.4
@@ -32015,6 +32247,8 @@ snapshots:
         dependencies:
             lru-cache: 10.2.0
             minipass: 7.0.4
+
+    path-to-regexp@0.1.12: {}
 
     path-to-regexp@0.1.7: {}
 
@@ -32931,6 +33165,10 @@ snapshots:
             side-channel: 1.0.6
 
     qs@6.12.1:
+        dependencies:
+            side-channel: 1.0.6
+
+    qs@6.13.0:
         dependencies:
             side-channel: 1.0.6
 
@@ -33955,6 +34193,24 @@ snapshots:
         transitivePeerDependencies:
             - supports-color
 
+    send@0.19.0:
+        dependencies:
+            debug: 2.6.9
+            depd: 2.0.0
+            destroy: 1.2.0
+            encodeurl: 1.0.2
+            escape-html: 1.0.3
+            etag: 1.8.1
+            fresh: 0.5.2
+            http-errors: 2.0.0
+            mime: 1.6.0
+            ms: 2.1.3
+            on-finished: 2.4.1
+            range-parser: 1.2.1
+            statuses: 2.0.1
+        transitivePeerDependencies:
+            - supports-color
+
     seq-queue@0.0.5: {}
 
     serialize-error@7.0.1:
@@ -33989,6 +34245,15 @@ snapshots:
             escape-html: 1.0.3
             parseurl: 1.3.3
             send: 0.18.0
+        transitivePeerDependencies:
+            - supports-color
+
+    serve-static@1.16.2:
+        dependencies:
+            encodeurl: 2.0.0
+            escape-html: 1.0.3
+            parseurl: 1.3.3
+            send: 0.19.0
         transitivePeerDependencies:
             - supports-color
 
@@ -34213,7 +34478,7 @@ snapshots:
     socks-proxy-agent@7.0.0:
         dependencies:
             agent-base: 6.0.2
-            debug: 4.3.4(supports-color@8.1.1)
+            debug: 4.3.7
             socks: 2.8.1
         transitivePeerDependencies:
             - supports-color
@@ -34221,7 +34486,7 @@ snapshots:
     socks-proxy-agent@8.0.2:
         dependencies:
             agent-base: 7.1.0
-            debug: 4.3.4(supports-color@8.1.1)
+            debug: 4.3.7
             socks: 2.8.1
         transitivePeerDependencies:
             - supports-color
@@ -34317,7 +34582,7 @@ snapshots:
 
     spdy-transport@3.0.0:
         dependencies:
-            debug: 4.3.4(supports-color@8.1.1)
+            debug: 4.3.7
             detect-node: 2.1.0
             hpack.js: 2.1.6
             obuf: 1.1.2
@@ -34759,9 +35024,9 @@ snapshots:
 
     swagger-ui-dist@5.17.14: {}
 
-    swagger-ui-express@5.0.1(express@4.18.3):
+    swagger-ui-express@5.0.1(express@4.21.2):
         dependencies:
-            express: 4.18.3
+            express: 4.21.2
             swagger-ui-dist: 5.17.14
 
     swr@2.2.0(react@18.2.0):
@@ -35107,7 +35372,7 @@ snapshots:
     tuf-js@1.1.7:
         dependencies:
             '@tufjs/models': 1.0.4
-            debug: 4.3.4(supports-color@8.1.1)
+            debug: 4.3.7
             make-fetch-happen: 11.1.1
         transitivePeerDependencies:
             - supports-color
@@ -35472,6 +35737,8 @@ snapshots:
         dependencies:
             querystringify: 2.2.0
             requires-port: 1.0.0
+
+    url-template@2.0.8: {}
 
     url@0.10.3:
         dependencies:
