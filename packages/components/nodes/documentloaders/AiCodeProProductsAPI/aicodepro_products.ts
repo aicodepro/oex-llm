@@ -63,7 +63,7 @@ export class AiCodeProProducts extends Tool {
                 ? fields.domain.slice(0, -1)
                 : fields.domain
             : 'https://api.aicodepro.com'
-        this.pageSize = fields.pageSize && fields.pageSize > 0 ? fields.pageSize : 10
+        this.pageSize = fields.pageSize && fields.pageSize > 0 ? fields.pageSize : 20
     }
 
     /** @ignore */

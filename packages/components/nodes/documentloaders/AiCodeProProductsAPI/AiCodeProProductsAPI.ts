@@ -112,7 +112,20 @@ class AiCodeProProductsAPI_DocumentLoaders implements INode {
                 ...parsedResults.data.map(
                     (result: any) =>
                         new Document({
-                            pageContent: result.attributes?.bodyHtml || '',
+                            pageContent: `Title: ${result.attributes?.title || 'Untitled'}
+SKU: ${result.attributes?.parentSku || 'Not Available'}
+Price: ${result.attributes?.price || 'Not Available'}
+Color: ${result.attributes?.color || 'Not Specified'}
+Description: ${result.attributes?.bodyHtml || ''}
+Tags: ${result.attributes?.tags || 'None'}
+Vendor: ${result.attributes?.vendor || 'Unknown'}
+Image: ${result.attributes?.image?.src || 'Not Available'}
+Product Type: ${result.attributes?.productType || 'Not Categorized'}
+Primary Keywords: ${result.attributes?.primaryKeywords || 'Not Specified'}
+Meta Title: ${result.attributes?.metaTitle || 'Not Specified'}
+Meta Description: ${result.attributes?.metaDescription || 'Not Specified'}
+Secondary Keywords: ${result.attributes?.secondaryKeywords || 'None'}
+Product URL: ${result.attributes?.handle ? `${websiteDomain}/products/${result.attributes?.handle}` : 'Not Available'}`,
                             metadata: {
                                 title: result.attributes?.title || 'Untitled',
                                 vendor: result.attributes?.vendor,
@@ -139,7 +152,7 @@ class AiCodeProProductsAPI_DocumentLoaders implements INode {
             hasNextPage = pagination?.pageCount > currentPage
             currentPage++
         }
-        //console.log(docs)
+        console.log(docs)
         docs = docs.filter((doc) => doc.pageContent && doc.pageContent.trim())
         // Remove empty docs
 
