@@ -999,3 +999,23 @@ export const mapMimeTypeToExt = (mimeType: string) => {
 export const removeInvalidImageMarkdown = (output: string): string => {
     return typeof output === 'string' ? output.replace(/!\[.*?\]\((?!https?:\/\/).*?\)/g, '') : output
 }
+
+export const getAiCodeProCredentials = async (nodeData: INodeData, options: ICommonObject) => {
+    const credentialData = await getCredentialData(nodeData.credential ?? '', options)
+
+    const tenantId = getCredentialParam('tenantId', credentialData, nodeData)
+    const storeId = getCredentialParam('storeId', credentialData, nodeData)
+    const assignedToken = getCredentialParam('token', credentialData, nodeData)
+    let domain = getCredentialParam('domain', credentialData, nodeData)
+
+    if (domain === undefined || domain === '') {
+        domain = 'https://api.aicodepro.com'
+    }
+
+    return {
+        tenantId,
+        storeId,
+        assignedToken,
+        domain
+    }
+}
