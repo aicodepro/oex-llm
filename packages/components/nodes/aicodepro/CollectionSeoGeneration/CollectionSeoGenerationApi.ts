@@ -172,21 +172,18 @@ export class CollectionSeoGenerationApi extends Tool {
                                 }
                             }
                         )
-                        console.log('res:', response.data)
                         result.push({
                             collectionId,
                             type: response.data.type,
                             message: response.data.message
                         })
                     } else {
-                        console.log('In else')
                         result.push({
                             collectionId,
                             type: 'Error',
                             message: 'Cannot update collection seo within 48 hour, please try again.'
                         })
                     }
-                    console.log('Out')
                 } catch (e) {
                     console.log('error', e)
                     result.push({
