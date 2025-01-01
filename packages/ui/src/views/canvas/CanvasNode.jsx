@@ -88,9 +88,9 @@ const CanvasNode = ({ data }) => {
                 content={false}
                 sx={{
                     padding: 0,
-                    borderColor: data.selected ? theme.palette.primary.main : theme.palette.text.secondary
+                    borderColor: data.selected ? '#4a3889' : '#4a3889'
                 }}
-                border={false}
+                border={true}
             >
                 <NodeTooltip
                     open={getNodeInfoOpenStatus()}
@@ -141,7 +141,7 @@ const CanvasNode = ({ data }) => {
                     placement='right-start'
                 >
                     <Box>
-                        <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
+                        <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', backgroundColor: '#4a3889' }}>
                             <Box style={{ width: 50, marginRight: 10, padding: 5 }}>
                                 <div
                                     style={{
@@ -162,9 +162,10 @@ const CanvasNode = ({ data }) => {
                             <Box>
                                 <Typography
                                     sx={{
-                                        fontSize: '1rem',
+                                        fontSize: '16px',
                                         fontWeight: 500,
-                                        mr: 2
+                                        mr: 2,
+                                        color: 'white'
                                     }}
                                 >
                                     {data.label}

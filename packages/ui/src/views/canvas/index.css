@@ -45,3 +45,9 @@
     cursor: crosshair;
     background: #5dba62 !important;
 }
+
+.react-flow__edge-path {
+    stroke: #ffae0d !important;
+    stroke-width: 1px !important;
+    fill: none;
+}
