@@ -1,12 +1,10 @@
-import { EmbeddingsInterface } from '@langchain/core/embeddings'
-import { BaseLanguageModelInterface } from '@langchain/core/language_models/base'
 import { Tool } from '@langchain/core/tools'
 import { getEnvironmentVariable } from '@langchain/core/utils/env'
 import axios from 'axios'
 
 export interface AiCodeProProductParams {
-    model?: BaseLanguageModelInterface
-    embeddings?: EmbeddingsInterface
+    // model?: BaseLanguageModelInterface
+    // embeddings?: EmbeddingsInterface
     tenantId?: string
     storeId?: string
     assignedToken?: string
@@ -27,8 +25,8 @@ export class CollectionSeoGenerationApi extends Tool {
 
     name = 'aicodepro-collection'
 
-    private model: BaseLanguageModelInterface
-    private embeddings: EmbeddingsInterface
+    // private model: BaseLanguageModelInterface
+    // private embeddings: EmbeddingsInterface
     protected tenantId: string
     protected storeId: string
     protected assignedToken: string
@@ -56,11 +54,11 @@ export class CollectionSeoGenerationApi extends Tool {
         if (!fields.tenantId) {
             throw new Error('tenantId is required. Please provide it as a parameter.')
         }
-        if (!fields.model || !fields.embeddings) {
-            throw new Error('Model and Embeddings are required')
-        }
-        this.model = fields.model
-        this.embeddings = fields.embeddings
+        // if (!fields.model || !fields.embeddings) {
+        //     throw new Error('Model and Embeddings are required')
+        // }
+        // this.model = fields.model
+        // this.embeddings = fields.embeddings
         this.assignedToken = fields.assignedToken
         this.storeId = fields.storeId
         this.tenantId = fields.tenantId

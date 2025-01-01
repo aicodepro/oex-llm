@@ -1,8 +1,6 @@
-import { BaseLanguageModel } from '@langchain/core/language_models/base'
 import { ICommonObject, INode, INodeData, INodeParams } from '../../../src/Interface'
 import { getAiCodeProCredentials, getBaseClasses } from '../../../src/utils'
 import { CollectionSeoGenerationApi } from './CollectionSeoGenerationApi'
-import { Embeddings } from '@langchain/core/embeddings'
 class CollectionSeoGeneration_AiCodePro implements INode {
     label: string
     name: string
@@ -30,17 +28,17 @@ class CollectionSeoGeneration_AiCodePro implements INode {
                 name: 'collectionIds',
                 type: 'string',
                 placeholder: '1,2,12,..'
-            },
-            {
-                label: 'Language Model',
-                name: 'model',
-                type: 'BaseLanguageModel'
-            },
-            {
-                label: 'Embeddings',
-                name: 'embeddings',
-                type: 'Embeddings'
             }
+            // {
+            //     label: 'Language Model',
+            //     name: 'model',
+            //     type: 'BaseLanguageModel'
+            // },
+            // {
+            //     label: 'Embeddings',
+            //     name: 'embeddings',
+            //     type: 'Embeddings'
+            // }
         ]
         this.credential = {
             label: 'AiCodePro Credentials',
@@ -53,8 +51,8 @@ class CollectionSeoGeneration_AiCodePro implements INode {
 
     async init(nodeData: INodeData, _: string, options: ICommonObject): Promise<any> {
         const collectionIds = nodeData.inputs?.collectionIds
-        const model = nodeData.inputs?.model as BaseLanguageModel
-        const embeddings = nodeData.inputs?.embeddings as Embeddings
+        // const model = nodeData.inputs?.model as BaseLanguageModel
+        // const embeddings = nodeData.inputs?.embeddings as Embeddings
         const { tenantId, storeId, assignedToken, domain } = await getAiCodeProCredentials(nodeData, options)
 
         if (!assignedToken || !tenantId || !storeId) {
@@ -64,7 +62,7 @@ class CollectionSeoGeneration_AiCodePro implements INode {
         if (!collectionIds) {
             throw new Error('Collection Ids are required')
         }
-        return new CollectionSeoGenerationApi({ tenantId, storeId, assignedToken, domain, collectionIds, model, embeddings })
+        return new CollectionSeoGenerationApi({ tenantId, storeId, assignedToken, domain, collectionIds })
     }
 }
 
