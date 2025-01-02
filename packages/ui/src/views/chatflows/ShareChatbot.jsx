@@ -26,20 +26,30 @@ import { baseURL } from '@/store/constant'
 const defaultConfig = {
     backgroundColor: '#ffffff',
     fontSize: 16,
-    poweredByTextColor: '#303235',
+    poweredByTextColor: '#4a3889',
     botMessage: {
         backgroundColor: '#f7f8ff',
         textColor: '#303235'
     },
     userMessage: {
-        backgroundColor: '#3B81F6',
+        backgroundColor: '#4a3889',
         textColor: '#ffffff'
     },
     textInput: {
         backgroundColor: '#ffffff',
-        textColor: '#303235',
-        sendButtonColor: '#3B81F6'
+        textColor: '#4a3889',
+        sendButtonColor: '#4a3889'
     }
+}
+
+const aicodepro = {
+    title: 'Aicodepro Assistant',
+    titleAvatarSrc: 'https://oextech.blr1.digitaloceanspaces.com/AiCodePro/Asset%205.svg',
+    welcomeMessage: 'Hello! This is Aicodepro bot.',
+    errorMessage: 'This is Aicodepro error message',
+    textInputPlaceholder: 'Type question..',
+    botMessageAvatarSrc: 'https://oextech.blr1.digitaloceanspaces.com/AiCodePro/important/aicodeproLogo.png',
+    userMessageAvatarSrc: 'https://oextech.blr1.digitaloceanspaces.com/AiCodePro/important/user.png'
 }
 
 const ShareChatbot = ({ isSessionMemory, isAgentCanvas }) => {
@@ -58,11 +68,11 @@ const ShareChatbot = ({ isSessionMemory, isAgentCanvas }) => {
     const [generateNewSession, setGenerateNewSession] = useState(chatbotConfig?.generateNewSession ?? false)
     const [renderHTML, setRenderHTML] = useState(chatbotConfig?.renderHTML ?? false)
 
-    const [title, setTitle] = useState(chatbotConfig?.title ?? '')
-    const [titleAvatarSrc, setTitleAvatarSrc] = useState(chatbotConfig?.titleAvatarSrc ?? '')
+    const [title, setTitle] = useState(chatbotConfig?.title ?? aicodepro.title)
+    const [titleAvatarSrc, setTitleAvatarSrc] = useState(chatbotConfig?.titleAvatarSrc ?? aicodepro.titleAvatarSrc)
 
-    const [welcomeMessage, setWelcomeMessage] = useState(chatbotConfig?.welcomeMessage ?? '')
-    const [errorMessage, setErrorMessage] = useState(chatbotConfig?.errorMessage ?? '')
+    const [welcomeMessage, setWelcomeMessage] = useState(chatbotConfig?.welcomeMessage ?? aicodepro.welcomeMessage)
+    const [errorMessage, setErrorMessage] = useState(chatbotConfig?.errorMessage ?? aicodepro.errorMessage)
     const [backgroundColor, setBackgroundColor] = useState(chatbotConfig?.backgroundColor ?? defaultConfig.backgroundColor)
     const [fontSize, setFontSize] = useState(chatbotConfig?.fontSize ?? defaultConfig.fontSize)
     const [poweredByTextColor, setPoweredByTextColor] = useState(chatbotConfig?.poweredByTextColor ?? defaultConfig.poweredByTextColor)
@@ -74,8 +84,8 @@ const ShareChatbot = ({ isSessionMemory, isAgentCanvas }) => {
     const [botMessageTextColor, setBotMessageTextColor] = useState(
         chatbotConfig?.botMessage?.textColor ?? defaultConfig.botMessage.textColor
     )
-    const [botMessageAvatarSrc, setBotMessageAvatarSrc] = useState(chatbotConfig?.botMessage?.avatarSrc ?? '')
-    const [botMessageShowAvatar, setBotMessageShowAvatar] = useState(chatbotConfig?.botMessage?.showAvatar ?? false)
+    const [botMessageAvatarSrc, setBotMessageAvatarSrc] = useState(chatbotConfig?.botMessage?.avatarSrc ?? aicodepro.botMessageAvatarSrc)
+    const [botMessageShowAvatar, setBotMessageShowAvatar] = useState(chatbotConfig?.botMessage?.showAvatar ?? true)
 
     const [userMessageBackgroundColor, setUserMessageBackgroundColor] = useState(
         chatbotConfig?.userMessage?.backgroundColor ?? defaultConfig.userMessage.backgroundColor
@@ -83,8 +93,10 @@ const ShareChatbot = ({ isSessionMemory, isAgentCanvas }) => {
     const [userMessageTextColor, setUserMessageTextColor] = useState(
         chatbotConfig?.userMessage?.textColor ?? defaultConfig.userMessage.textColor
     )
-    const [userMessageAvatarSrc, setUserMessageAvatarSrc] = useState(chatbotConfig?.userMessage?.avatarSrc ?? '')
-    const [userMessageShowAvatar, setUserMessageShowAvatar] = useState(chatbotConfig?.userMessage?.showAvatar ?? false)
+    const [userMessageAvatarSrc, setUserMessageAvatarSrc] = useState(
+        chatbotConfig?.userMessage?.avatarSrc ?? aicodepro.userMessageAvatarSrc
+    )
+    const [userMessageShowAvatar, setUserMessageShowAvatar] = useState(chatbotConfig?.userMessage?.showAvatar ?? true)
 
     const [textInputBackgroundColor, setTextInputBackgroundColor] = useState(
         chatbotConfig?.textInput?.backgroundColor ?? defaultConfig.textInput.backgroundColor
@@ -102,6 +114,11 @@ const ShareChatbot = ({ isSessionMemory, isAgentCanvas }) => {
 
     const [copyAnchorEl, setCopyAnchorEl] = useState(null)
     const openCopyPopOver = Boolean(copyAnchorEl)
+
+    // eslint-disable-next-line no-console
+    // console.log(chatflow)
+    // eslint-disable-next-line no-console
+    // console.log(chatbotConfig)
 
     const formatObj = () => {
         const obj = {
@@ -436,16 +453,16 @@ const ShareChatbot = ({ isSessionMemory, isAgentCanvas }) => {
                     />
                 </div>
             </Stack>
-            {textField(title, 'title', 'Title', 'string', 'Flowise Assistant')}
+            {textField(title, 'title', 'Title', 'string', 'Aicodepro Assitant')}
             {textField(
                 titleAvatarSrc,
                 'titleAvatarSrc',
                 'Title Avatar Link',
                 'string',
-                `https://raw.githubusercontent.com/FlowiseAI/Flowise/main/assets/FloWiseAI_dark.png`
+                `https://oextech.blr1.digitaloceanspaces.com/AiCodePro/Asset%205.svg`
             )}
-            {textField(welcomeMessage, 'welcomeMessage', 'Welcome Message', 'string', 'Hello! This is custom welcome message')}
-            {textField(errorMessage, 'errorMessage', 'Error Message', 'string', 'This is custom error message')}
+            {textField(welcomeMessage, 'welcomeMessage', 'Welcome Message', 'string', 'Hello! This is Aicodepro bot.')}
+            {textField(errorMessage, 'errorMessage', 'Error Message', 'string', 'This is Aicodepro error message')}
             {colorField(backgroundColor, 'backgroundColor', 'Background Color')}
             {textField(fontSize, 'fontSize', 'Font Size', 'number')}
             {colorField(poweredByTextColor, 'poweredByTextColor', 'PoweredBy TextColor')}
@@ -462,7 +479,7 @@ const ShareChatbot = ({ isSessionMemory, isAgentCanvas }) => {
                 'botMessageAvatarSrc',
                 'Avatar Link',
                 'string',
-                `https://raw.githubusercontent.com/zahidkhawaja/langchain-chat-nextjs/main/public/parroticon.png`
+                `https://oextech.blr1.digitaloceanspaces.com/AiCodePro/important/aicodeproLogo.png`
             )}
             {booleanField(botMessageShowAvatar, 'botMessageShowAvatar', 'Show Avatar')}
 
@@ -477,7 +494,7 @@ const ShareChatbot = ({ isSessionMemory, isAgentCanvas }) => {
                 'userMessageAvatarSrc',
                 'Avatar Link',
                 'string',
-                `https://raw.githubusercontent.com/zahidkhawaja/langchain-chat-nextjs/main/public/usericon.png`
+                `https://oextech.blr1.digitaloceanspaces.com/AiCodePro/important/user.png`
             )}
             {booleanField(userMessageShowAvatar, 'userMessageShowAvatar', 'Show Avatar')}
 
