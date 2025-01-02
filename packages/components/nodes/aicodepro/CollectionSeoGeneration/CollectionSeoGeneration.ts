@@ -27,7 +27,7 @@ class CollectionSeoGeneration_AiCodePro implements INode {
                 label: 'Collection Ids',
                 name: 'collectionIds',
                 type: 'string',
-                placeholder: '1,2,12,..'
+                placeholder: '1,2,12,...'
             }
             // {
             //     label: 'Language Model',
