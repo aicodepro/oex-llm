@@ -147,13 +147,23 @@ export class CollectionSeoGenerationApi extends Tool {
                         }
                     })
                     if (
+                        collection.data.data.attributes.seoGeneration === 'pending' ||
+                        collection.data.data.attributes.seoGeneration === 'progress'
+                    ) {
+                        return JSON.stringify({
+                            collectionId,
+                            type: 'Accepted',
+                            message: `We are currently processing your request. Seo Status of this collection is ${collection.data.data.attributes.seoGeneration}`
+                        })
+                    }
+                    if (
                         collection.data.data.attributes.seoGeneration === 'failed' ||
-                        (new Date().getMilliseconds() -
+                        (new Date().getTime() -
                             new Date(
                                 collection.data.data.attributes?.seoUpdatedAt
                                     ? collection.data.data.attributes?.seoUpdatedAt
                                     : collection.data.data.attributes.updatedAt
-                            ).getMilliseconds()) /
+                            ).getTime()) /
                             (1000 * 60 * 60) >
                             48
                     ) {
@@ -162,7 +172,8 @@ export class CollectionSeoGenerationApi extends Tool {
                             {
                                 primaryKeyword: collection.data.data.attributes?.primaryKeyword,
                                 secondryKeyword: collection.data.data.attributes?.secondryKeyword,
-                                title: collection.data.data.attributes?.title
+                                title: collection.data.data.attributes?.title,
+                                seoUpdatedBy: 'agent'
                             },
                             {
                                 headers: {
@@ -179,7 +190,8 @@ export class CollectionSeoGenerationApi extends Tool {
                         result.push({
                             collectionId,
                             type: 'Error',
-                            message: 'Cannot update collection seo within 48 hour, please try again.'
+                            message:
+                                'Cannot update collection seo within 48 hour. If you want to update it, please visit our https://app.aicodepro.com'
                         })
                     }
                 } catch (e) {
