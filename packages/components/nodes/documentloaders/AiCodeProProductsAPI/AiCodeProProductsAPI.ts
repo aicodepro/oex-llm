@@ -132,7 +132,7 @@ class AiCodeProProductsAPI_DocumentLoaders implements INode {
         let docs: IDocument[] = []
         let currentPage = 1
         let hasNextPage = true
-        while (hasNextPage && currentPage < 3) {
+        while (hasNextPage) {
             let searchResults
             try {
                 searchResults = await loader._call(currentPage)
