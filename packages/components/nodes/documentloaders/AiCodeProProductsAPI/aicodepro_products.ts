@@ -11,6 +11,7 @@ export interface AiCodeProProductsParams {
     tenantId?: string
     domain?: string
     pageSize?: number
+    fetchLiveProducts?: boolean
 }
 
 /**
@@ -34,6 +35,7 @@ export class AiCodeProProducts extends Tool {
     tenantId?: string
     domain?: string
     pageSize?: number
+    fetchLiveProducts?: boolean
 
     constructor(
         fields: AiCodeProProductsParams = {
@@ -64,6 +66,7 @@ export class AiCodeProProducts extends Tool {
                 : fields.domain
             : 'https://api.aicodepro.com'
         this.pageSize = fields.pageSize && fields.pageSize > 0 ? fields.pageSize : 20
+        this.fetchLiveProducts = fields?.fetchLiveProducts ? fields.fetchLiveProducts : false
     }
 
     /** @ignore */
@@ -76,8 +79,8 @@ export class AiCodeProProducts extends Tool {
             Accept: 'application/json'
         }
 
-        const url = `${this.domain}/api/product-service/${this.tenantId}/${this.storeId}/channel-products?pagination[page]=${currentPage}&pagination[pageSize]=${this.pageSize}&filters[isListedOnShopify][$eq]=true&locale=en`
-        console.log('Fetching products data...', url)
+        const url = `${this.domain}/api/product-service/${this.tenantId}/${this.storeId}/channel-products?pagination[page]=${currentPage}&pagination[pageSize]=${this.pageSize}&filters[isListedOnShopify][$eq]=${this.fetchLiveProducts}&locale=en&populate[0]=product_service_ps_ms_channel_images&populate[1]=ps_ms_product_attributes&populate[2]=ps_ms_product_attributes.product_service_ps_attribute`
+
         const response = await fetch(url, {
             method: 'GET',
             headers
