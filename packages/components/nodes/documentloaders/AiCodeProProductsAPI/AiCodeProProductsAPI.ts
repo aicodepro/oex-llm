@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { omit } from 'lodash'
 import { ICommonObject, IDocument, INode, INodeData, INodeParams } from '../../../src/Interface'
 import { TextSplitter } from 'langchain/text_splitter'
@@ -41,6 +42,12 @@ class AiCodeProProductsAPI_DocumentLoaders implements INode {
                 type: 'string'
             },
             {
+                label: 'Fetch Live products',
+                name: 'fetchLiveProducts',
+                type: 'boolean',
+                optional: true
+            },
+            {
                 label: 'Text Splitter',
                 name: 'textSplitter',
                 type: 'TextSplitter',
@@ -68,11 +75,35 @@ class AiCodeProProductsAPI_DocumentLoaders implements INode {
         ]
     }
 
+    structuredAttributeData = (attributes: any) => {
+        if (!attributes?.data) return ''
+        const attributeString = attributes.data
+            .map((item: any) => {
+                const attribute = item?.attributes?.product_service_ps_attribute?.data?.attributes?.name
+                const value = item?.attributes?.text
+                return attribute && value ? `${attribute.toLowerCase()}: ${value.toLowerCase()}` : null
+            })
+            .filter((item: any) => item !== null)
+            .join(', ')
+        return attributeString
+    }
+
+    channelImagesDataSrc = (images: any) => {
+        if (!images?.data) return []
+
+        const imagesSrcArray = images?.data.map((item: any) => {
+            const src = item.attributes?.aicodeproImage?.url
+            return { url: src }
+        })
+        return imagesSrcArray.filter((item: any) => item !== null)
+    }
+
     async init(nodeData: INodeData, _: string, options: ICommonObject): Promise<any> {
         const textSplitter = nodeData.inputs?.textSplitter as TextSplitter
         const websiteDomain = nodeData.inputs?.websiteDomain as string
         const metadata = nodeData.inputs?.metadata
         const _omitMetadataKeys = nodeData.inputs?.omitMetadataKeys as string
+        const fetchLiveProducts = nodeData.inputs?.fetchLiveProducts as boolean
 
         let omitMetadataKeys: string[] = []
         if (_omitMetadataKeys) {
@@ -90,12 +121,18 @@ class AiCodeProProductsAPI_DocumentLoaders implements INode {
         if (!aicodeproToken || !tenantId || !storeId) {
             throw new Error('Missing required credentials: token, tenantId, or storeId.')
         }
-        const loader = new AiCodeProProducts({ aicodeproToken: aicodeproToken, tenantId: tenantId, storeId: storeId, domain: domain })
+        const loader = new AiCodeProProducts({
+            aicodeproToken: aicodeproToken,
+            tenantId: tenantId,
+            storeId: storeId,
+            domain: domain,
+            fetchLiveProducts: fetchLiveProducts
+        })
 
         let docs: IDocument[] = []
         let currentPage = 1
         let hasNextPage = true
-        while (hasNextPage) {
+        while (hasNextPage && currentPage < 3) {
             let searchResults
             try {
                 searchResults = await loader._call(currentPage)
@@ -108,52 +145,62 @@ class AiCodeProProductsAPI_DocumentLoaders implements INode {
                 throw new Error('Invalid API response format: "data" field is missing or not an array.')
             }
             const pagination = parsedResults.meta?.pagination
-            docs.push(
-                ...parsedResults.data.map(
-                    (result: any) =>
-                        new Document({
-                            pageContent: `Title: ${result.attributes?.title || 'Untitled'}
-SKU: ${result.attributes?.parentSku || 'Not Available'}
-Price: ${result.attributes?.price || 'Not Available'}
-Color: ${result.attributes?.color || 'Not Specified'}
-Description: ${result.attributes?.bodyHtml || ''}
-Tags: ${result.attributes?.tags || 'None'}
-Vendor: ${result.attributes?.vendor || 'Unknown'}
-Image: ${result.attributes?.image?.src || 'Not Available'}
-Product Type: ${result.attributes?.productType || 'Not Categorized'}
-Primary Keywords: ${result.attributes?.primaryKeywords || 'Not Specified'}
-Meta Title: ${result.attributes?.metaTitle || 'Not Specified'}
-Meta Description: ${result.attributes?.metaDescription || 'Not Specified'}
-Secondary Keywords: ${result.attributes?.secondaryKeywords || 'None'}
-Product URL: ${result.attributes?.handle ? `${websiteDomain}/products/${result.attributes?.handle}` : 'Not Available'}`,
-                            metadata: {
-                                title: result.attributes?.title || 'Untitled',
-                                vendor: result.attributes?.vendor,
-                                status: result.attributes?.status,
-                                tags: result.attributes?.tags,
-                                image: result.attributes?.image?.src,
-                                price: result.attributes?.price,
-                                color: result.attributes?.color,
-                                parentSku: result.attributes?.parentSku,
-                                primaryKeywords: result.attributes?.primaryKeywords,
-                                metaTitle: result.attributes?.metaTitle,
-                                metaDescription: result.attributes?.metaDescription,
-                                secondaryKeywords: result.attributes?.secondaryKeywords,
-                                productType: result.attributes?.productType,
-                                quantity: result.attributes?.quantity,
-                                mrp: result.attributes?.mrp,
-                                size: result.attributes?.size,
-                                link: result.attributes?.handle ? `${websiteDomain}/products/${result.attributes.handle}` : null
-                            }
-                        })
-                )
-            )
+            const newDocs = parsedResults.data
+                .map((result: any) => {
+                    const attributesData = this.structuredAttributeData(result.attributes?.ps_ms_product_attributes)
+                    const channelImagesData = this.channelImagesDataSrc(result.attributes?.product_service_ps_ms_channel_images)
+                    if (!attributesData) {
+                        console.warn(`Attributes data is undefined for result:`, result)
+                        return null // Skip invalid entries
+                    }
+
+                    return new Document({
+                        pageContent: `Title: ${result.attributes?.title || 'Untitled'}
+        SKU: ${result.attributes?.parentSku || 'Not Available'}
+        Price: ${result.attributes?.price || 'Not Available'}
+        Color: ${result.attributes?.color || 'Not Specified'}
+        Description: ${result.attributes?.bodyHtml || ''}
+        Tags: ${result.attributes?.tags || 'None'}
+        Vendor: ${result.attributes?.vendor || 'Unknown'}
+        Image: ${result.attributes?.image?.src || 'Not Available'}
+        Product Type: ${result.attributes?.productType || 'Not Categorized'}
+        Primary Keywords: ${result.attributes?.primaryKeywords || 'Not Specified'}
+        Meta Title: ${result.attributes?.metaTitle || 'Not Specified'}
+        Meta Description: ${result.attributes?.metaDescription || 'Not Specified'}
+        Secondary Keywords: ${result.attributes?.secondaryKeywords || 'None'}
+        Product URL: ${result.attributes?.handle ? `${websiteDomain}/products/${result.attributes?.handle}` : 'Not Available'}
+        Product Attributes: ${attributesData || 'Attributes are not available'}`,
+                        metadata: {
+                            title: result.attributes?.title || 'Untitled',
+                            vendor: result.attributes?.vendor,
+                            status: result.attributes?.status,
+                            tags: result.attributes?.tags,
+                            image: result.attributes?.image?.src,
+                            price: result.attributes?.price,
+                            color: result.attributes?.color,
+                            parentSku: result.attributes?.parentSku,
+                            primaryKeywords: result.attributes?.primaryKeywords,
+                            metaTitle: result.attributes?.metaTitle,
+                            metaDescription: result.attributes?.metaDescription,
+                            secondaryKeywords: result.attributes?.secondaryKeywords,
+                            productType: result.attributes?.productType,
+                            quantity: result.attributes?.quantity,
+                            mrp: result.attributes?.mrp,
+                            size: result.attributes?.size,
+                            link: result.attributes?.handle ? `${websiteDomain}/products/${result.attributes.handle}` : null,
+                            attributes: attributesData,
+                            productImages: channelImagesData
+                        }
+                    })
+                })
+                .filter((doc: any) => doc !== null)
+
+            docs.push(...newDocs)
             // Check for pagination end
             hasNextPage = pagination?.pageCount > currentPage
             currentPage++
         }
-        console.log(docs)
-        docs = docs.filter((doc) => doc.pageContent && doc.pageContent.trim())
+        docs = docs.filter((doc) => doc?.pageContent && doc?.pageContent.trim())
         // Remove empty docs
 
         if (textSplitter) {
